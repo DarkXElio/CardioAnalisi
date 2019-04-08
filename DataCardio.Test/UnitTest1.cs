@@ -8,12 +8,17 @@ namespace DataCardio.Test
     {
         [TestMethod]
         public void MAX1()
-        {
+        { 
             string errore = " ";
-            int eta = 20;
-            double return_max = EquazioniLibrary.DataCardio.FrequenzaBattitoCardiacoMAX(eta, ref errore);
-            double aspetativa_max = 140;
-            string aspetativa_errore = "Non esiste l'eta minire di 0 ";
+        string eta = "20";
+
+
+
+
+        double return_max = EquazioniLibrary.DataCardio.FrequenzaBattitoCardiacoMAX(eta, ref errore);
+        double aspetativa_max = 140;
+        string aspetativa_errore1 = "Non esiste l'eta minire di 0 ";
+        string aspetativa_errore2 = "Non hai inserito un numero";
 
             if (errore == " ")
             {
@@ -21,7 +26,16 @@ namespace DataCardio.Test
             }
             else
             {
-                Assert.AreEqual(aspetativa_errore, errore);
+                try
+                {
+                    Convert.ToInt32(eta);
+                    Assert.AreEqual(aspetativa_errore1, errore);
+                }
+                catch
+                {
+                    Assert.AreEqual(aspetativa_errore2, errore);
+                }
+               
             }
 
         }
@@ -29,12 +43,17 @@ namespace DataCardio.Test
 
         public void MAX2()
         {
+
             string errore = " ";
-            int eta = -5;
+            string eta = "a";
+
+
+
+
             double return_max = EquazioniLibrary.DataCardio.FrequenzaBattitoCardiacoMAX(eta, ref errore);
-            double aspetativa_max = 0;
-            Assert.AreEqual(aspetativa_max, return_max);
-            string aspetativa_errore = "Non esiste l'eta minire di 0 ";
+            double aspetativa_max = 140;
+            string aspetativa_errore1 = "Non esiste l'eta minire di 0 ";
+            string aspetativa_errore2 = "Non hai inserito un numero";
 
             if (errore == " ")
             {
@@ -42,7 +61,16 @@ namespace DataCardio.Test
             }
             else
             {
-                Assert.AreEqual(aspetativa_errore, errore);
+                try
+                {
+                    Convert.ToInt32(eta);
+                    Assert.AreEqual(aspetativa_errore1, errore);
+                }
+                catch
+                {
+                    Assert.AreEqual(aspetativa_errore2, errore);
+                }
+               
             }
 
         }
@@ -50,11 +78,15 @@ namespace DataCardio.Test
         public void MAX3()
         {
             string errore = " ";
-            int eta = -1;
+            string eta = "a";
+
+
+
+
             double return_max = EquazioniLibrary.DataCardio.FrequenzaBattitoCardiacoMAX(eta, ref errore);
-            double aspetativa_max = 0;
-            Assert.AreEqual(aspetativa_max, return_max);
-            string aspetativa_errore = "Non esiste l'eta minire di 0 ";
+            double aspetativa_max = 140;
+            string aspetativa_errore1 = "Non esiste l'eta minire di 0 ";
+            string aspetativa_errore2 = "Non hai inserito un numero";
 
             if (errore == " ")
             {
@@ -62,9 +94,16 @@ namespace DataCardio.Test
             }
             else
             {
+                try
+                {
+                    Convert.ToInt32(eta);
+                    Assert.AreEqual(aspetativa_errore1, errore);
+                }
+                catch
+                {
+                    Assert.AreEqual(aspetativa_errore2, errore);
+                }
 
-
-                Assert.AreEqual(aspetativa_errore, errore);
             }
 
         }

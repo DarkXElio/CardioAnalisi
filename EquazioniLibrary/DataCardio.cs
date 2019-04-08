@@ -8,12 +8,26 @@ namespace EquazioniLibrary
 {
     public class DataCardio
     {
-        public static double FrequenzaBattitoCardiacoMAX(int eta, ref string errore)
+        public static double FrequenzaBattitoCardiacoMAX(string eta, ref string errore)
         {
+            double x=0, max=0;
+            if ( errore !=" ")
+            {
 
-            double x = 220 - eta;
-            double max = x * 0.7;
+            }
+            else
+            {
 
+                try
+                {
+                    x = 220 - Convert.ToInt32(eta);
+                    max = x * 0.7;
+                }
+                catch
+                {
+                    errore = "Non hai inserito un numero";
+                }
+            }
             if (x > 220)
             {
                 max = 0;
