@@ -266,45 +266,20 @@ namespace DataCardio.Test
 
 
 
-        //      sesso  FCArdiaca , Pesso , ETA , Teampo , Atessa
+        //      sesso  fcardiaca , peso , eta , teampo , atessa
         [DataRow("F" , "65" ,"56" ,"23" ,"60", "47,4923518164436")]
         [DataRow("M", "65", "56", "23", "60", "24,3025812619504")]
-        [DataRow("A", "65", "56", "23", "60", "24,3025812619504")]
-        [DataRow("F", "65", "a", "50", "60", "24,3025812619504")]
-        public void calcoriebruciato(string sesso, string fcardiaca , string pesso , string eta , string tempo,string atessa)
+        [DataRow("A", "65", "56", "23", "60", "Sesso non e valido non è valido")]
+        [DataRow("F", "65", "a", "50", "60", "Errore")]
+        [DataRow("F", "65", "-15", "50", "60", "Il peso da lei inserito è negativo")]
+        [DataRow("F", "65", "56", "-59", "30", "L'età da lei inserita è negativa")]
+        [DataRow("M", "65", "56", "50", "-80", "Il Tempo da lei inserito è negativo")]
+        [DataRow("F", "1", "1", "1", "1", "Resultato resulta negativo, i dati inseriti non sono corretti")]
+        [DataRow("M", "1", "1", "1", "1", "Resultato resulta negativo, i dati inseriti non sono corretti")]
+        public void calcoriebruciato(string sesso, string fcardiaca , string peso , string eta , string tempo,string attesa)
         {
-
-            double return_res = 0;
-            string errore_msg = " ";
-            string msg = " ";
-            try { 
-            return_res = EquazioniLibrary.DataCardio.CalorieBruciato(sesso , Convert.ToDouble(fcardiaca), Convert.ToDouble(pesso), Convert.ToDouble(eta), Convert.ToDouble(tempo),ref msg);
-            errore_msg = "Errore il sesso non non e correto ";
-                if (msg == " ")
-                {
-                    Assert.AreEqual(Convert.ToString(return_res), atessa);
-                }
-                else
-                {
-                    Assert.AreEqual(errore_msg, msg);
-                }
-
-            }
-            catch
-            {
-                errore_msg = "Errore devi inserrire un numero e no un lattera";
-                msg = "Errore devi inserrire un numero e no un lattera";
-                Assert.AreEqual(errore_msg, msg);
-                
-               
-
-            }
-            
-
-           
-
-
-
+            string CaloriaBruciate_Calcolato = EquazioniLibrary.DataCardio.CaloriaBruciate(sesso, fcardiaca, peso, eta, tempo);
+            Assert.AreEqual(attesa, CaloriaBruciate_Calcolato);
         }
 
     }
