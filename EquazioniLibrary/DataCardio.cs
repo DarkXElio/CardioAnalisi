@@ -70,40 +70,87 @@ namespace EquazioniLibrary
         }
 
 
-        public static double CalorieBruciato(string sesso ,double FC, double P , double E , double T ,ref string msg)
-        {
-            double Calorie_Bruciate = 0;
-
-
-            if (FC<60 || FC >100)
+        public static string CaloriaBruciate(string sesso, string fcardiaca, string peso, string eta, string tempo)
             {
+               
+                string risp = "";
 
+                try
+                {
+                   
+                    double Fcardiaca = Convert.ToDouble(fcardiaca);
+                    double Peso = Convert.ToDouble(peso);
+                    double Eta = Convert.ToDouble(eta);
+                    double Tempo = Convert.ToDouble(tempo);
+
+                    
+                    if (Fcardiaca < 0 || Peso < 0 || Eta < 0 || Tempo < 0)
+                    {
+                        if (Fcardiaca < 0)
+                        {
+                            risp = "La frequenza cardiaca da lei inserita è negativa";
+                        }
+
+                        if (Peso < 0)
+                        {
+                            risp = "Il peso da lei inserito è negativo";
+                        }
+
+                        if (Eta < 0)
+                        {
+                            risp = "L'età da lei inserita è negativa";
+                        }
+
+                        if (Tempo < 0)
+                        {
+                            risp = "Il Tempo da lei inserito è negativo";
+                        }
+                    }
+                    else
+                    {
+                        
+                        double Calorie_Bruciate = 0;
+                    
+                        if (sesso == "M")
+                        {
+                            Calorie_Bruciate = ((Eta * 0.2017) + (Peso * 0.199) + (Fcardiaca * 0.6309) - 55.0969) * Tempo / 4.184;
+                            
+                            if (Calorie_Bruciate < 0)
+                            {
+                                risp = "Resultato resulta negativo, i dati inseriti non sono corretti";
+                            }
+                            else
+                            {
+                                risp = Convert.ToString(Calorie_Bruciate);
+                            }
+                        }
+                        else if (sesso == "F")
+                        {
+                            Calorie_Bruciate = ((Eta * 0.074) - (Peso* 0.126) + (Fcardiaca * 0.4472) - 20.4022) * Tempo / 4.184;
+                           
+                            if (Calorie_Bruciate < 0)
+                            {
+                                risp = "Resultato resulta negativo, i dati inseriti non sono corretti";
+                            }
+                            else
+                            {
+                                risp = Convert.ToString(Calorie_Bruciate);
+                            }
+                        }
+                        else
+                        {
+                            risp = "Sesso non e valido non è valido";
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    risp = "Errore";
+                }
+
+                return risp;
             }
-            else if (P<0)
-            {
 
-            }
-            else if (E<0)
-            {
-
-            }
-
-
-            if (sesso=="F"||sesso == "f")
-            {
-                Calorie_Bruciate = ((E * 0.074) - (P * 0.126) + (FC * 0.4472) - 20.4022) * T / 4.184;
-            }
-            else if(sesso == "M"||sesso == "m") {
-            Calorie_Bruciate = ((E * 0.2017) + (P * 0.199) + (FC * 0.6309) - 55.0969) * T / 4.184;
-            }
-            else if (sesso != "M" && sesso != "m" && sesso != "F" && sesso != "f")  { msg = "Errore il sesso non non e correto "; }
-
-
-
-
-
-
-            return Calorie_Bruciate;
         }
 
 
@@ -112,4 +159,4 @@ namespace EquazioniLibrary
 
 
     }
-}
+
