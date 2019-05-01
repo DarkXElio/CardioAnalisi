@@ -151,12 +151,63 @@ namespace EquazioniLibrary
                 return risp;
             }
 
+//nr4
+    public static string Spesa_energetica(string passo, string spazio, string peso)
+    {
+
+        string risp = "";
+
+        try
+        {
+           
+            double Spazio = Convert.ToDouble(spazio);
+            double Peso = Convert.ToDouble(peso);
+
+            if (Peso < 0 || Spazio < 0)
+            {
+                if (Spazio < 0)
+                {
+                    risp = "Lo spazio che hai inserito è negativo";
+                }
+
+                if (Peso < 0)
+                {
+                    risp = "Il peso che hai inserito è negativo";
+                }
+            }
+            else
+            {
+                
+                double SEnergetica = 0;
+
+               
+                if (passo == "corsa")
+                {
+                    SEnergetica = 0.9 * Spazio * Peso;
+
+                    risp = Convert.ToString(SEnergetica);
+                }
+                else if (passo == "camminata")
+                {
+                    SEnergetica = 0.5 * Spazio * Peso;
+
+                    risp = Convert.ToString(SEnergetica);
+                }
+                else
+                {
+                    risp = "L'caso che hai inserito non è valido";
+                }
+            }
+        }
+        catch (Exception)
+        {
+            risp = "Errore";
         }
 
-
-
-
-
-
+        return risp;
     }
+    }
+}
+
+
 
