@@ -282,5 +282,23 @@ namespace DataCardio.Test
             Assert.AreEqual(attesa, CaloriaBruciate_Calcolato);
         }
 
+        //nr 4
+        [DataRow("corsa", "10", "57", "513")]
+        [DataRow("camminata", "10", "57", "285")]
+        [DataRow("camminata", "30", "-8", "Il peso che hai inserito è negativo")]
+        [DataRow("camminata", "-9", "57", "Lo spazio che hai inserito è negativo")]
+        [DataRow("testooo", "10", "57", "L'caso che hai inserito non è valido")]
+        [DataRow("corsa", "b", "57", "Errore")]
+        [DataRow("camminata", "10", "b", "Errore")]
+        [TestMethod]
+        public void SEnergetica(string passo, string spazio, string peso, string Atteso)
+        {
+            string SE_Calcolata = EquazioniLibrary.DataCardio.Spesa_energetica(passo, spazio, peso);
+
+            Assert.AreEqual(Atteso, SE_Calcolata);
+        }
+
+
     }
 }
+
